@@ -107,7 +107,7 @@ export function populateOutputBundleOptions(outputPaths: OutputPaths): OutputBun
 }
 
 export function parseOutputBundleOptions(buildOutput: string): OutputBundleOptions {
-  const strippedManifest = extractManifestOutput(buildOutput);
+  const strippedManifest = extractManifestOutput(buildOutput).replace(/\r?\n/g, "");
   const parsedManifest = JSON.parse(strippedManifest) as string;
   const manifest = buildManifestSchema.parse(parsedManifest);
   if (manifest["errors"].length > 0) {
